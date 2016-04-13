@@ -28,18 +28,20 @@ public:
 		if ((left != NULL && compared->left == NULL) || (left == NULL && compared->getLeft() != NULL))
 			return false;
 		//if both nodes' left children are NULL do nothing so that checkSameAs will not try to run on a non-existant node
-		else if (left == NULL && compared->getLeft() == NULL) {}
-		//if both nodes' left children exist, run this function on them (recursively), if they do not match, neither do these nodes - return false
-		else if (!left->checkSameAs(compared->getLeft()))
-			return false;
+		else if (left != NULL && compared->getLeft() != NULL) {
+			//if both nodes' left children exist, run this function on them (recursively), if they do not match, neither do these nodes - return false
+			if (!left->checkSameAs(compared->getLeft()))
+				return false;
+		}
 		//if one node's right child is NULL and the other's is not return false
 		if ((right != NULL && compared->getRight() == NULL) || (right == NULL && compared->getRight() != NULL))
 			return false;
 		//if both nodes' right children are NULL do nothing so that checkSameAs will not try to run on a non-existant node
-		else if (right == NULL && compared->getRight() == NULL) {}
-		//if both nodes' right children exist, run this function on them (recursively), if they do not match, neither do these nodes - return false
-		else if (!right->checkSameAs(compared->getRight()))
-			return false;
+		else if (right != NULL && compared->getRight() != NULL) {
+			//if both nodes' right children exist, run this function on them (recursively), if they do not match, neither do these nodes - return false
+			if (!right->checkSameAs(compared->getRight()))
+				return false;	
+		}
 		//if nothing has prompted a false return, return true
 		return true;
 	}
